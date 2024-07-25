@@ -1,26 +1,56 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// Package Imports
+import React, { useState } from "react";
+import "./App.css";
 
-function App() {
+// Component Imports
+import Order from "./Order";
+import Checkout from "./Checkout";
+
+// Const imports
+import { emptyFruitBasket } from "./consts";
+
+// Component
+const App = () => {
+  // State
+  const [page, setPage] = useState<Page>("order");
+  const [fruitBasket, setFruitBasket] =
+    useState<FruitBasketItem[]>(emptyFruitBasket);
+
+  // Functions
+  const updateFruitBasket = (
+    fruitToUpdate: FruitRef,
+    updatedQuantity: number
+  ) => {
+    const updatedFruitBasket = fruitBasket.map((fruitBasketItem) => {
+      const { ref } = fruitBasketItem;
+      if (ref === fruitToUpdate) {
+        const updatedFruitBasketItem = {
+          ...fruitBasketItem,
+          quantity: updatedQuantity,
+        };
+        return updatedFruitBasketItem;
+      } else {
+        return fruitBasketItem;
+      }
+    });
+    setFruitBasket(updatedFruitBasket);
+  };
+
+  // Render
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {page === "order" ? (
+        <Order
+          setPage={setPage}
+          updateFruitBasket={updateFruitBasket}
+          fruitBasket={fruitBasket}
+        />
+      ) : (
+        <Checkout setPage={setPage} fruitBasket={fruitBasket} />
+      )}
     </div>
   );
-}
+};
 
+// Component export
 export default App;
