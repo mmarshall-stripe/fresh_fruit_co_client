@@ -21,6 +21,10 @@ code {
   justify-content: center;
 }
 
+h2 {
+  color: rgb(0, 140, 255) !important ;
+}
+
 .css-1dxon6q {
   font-size: 2.3rem !important;
   margin-bottom: 60px !important;
@@ -48,6 +52,10 @@ code {
 .css-wy9e43 {
   font-size: 1.2rem !important;
   font-weight: normal !important;
+}
+
+.css-smpce7 {
+  width: 149px !important;
 }
 
 .order-wrapper [data-paste-element="INPUT"] {
@@ -87,8 +95,18 @@ code {
 
 .checkout-inputs-user-wrapper[data-paste-element="HELP_TEXT"],
 .checkout-inputs-user-wrapper [data-paste-element="RADIO_BUTTON_GROUP"],
-.checkout-inputs-user-wrapper [data-paste-element="ALERT"] {
+.checkout-inputs-user-wrapper [data-paste-element="ALERT"],
+.checkout-inputs-wrapper [data-paste-element="ALERT"] {
   margin-bottom: 30px;
+}
+
+.checkout-inputs-address-wrapper [data-paste-element="LABEL"] {
+  font-size: 14.88px !important;
+  margin-bottom: 8px;
+}
+
+.checkout-inputs-address-wrapper [data-paste-element="INPUT"] {
+  margin-bottom: 10px;
 }
 
 .checkout-inputs-user-wrapper [data-paste-element="BUTTON"] {

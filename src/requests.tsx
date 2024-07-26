@@ -1,6 +1,10 @@
 // Package imports
 import axios from "axios";
-import { Stripe, StripeElements } from "@stripe/stripe-js";
+import {
+  Stripe,
+  StripeElements,
+  StripeAddressElementChangeEvent,
+} from "@stripe/stripe-js";
 
 // Const Imports
 import {
@@ -12,6 +16,7 @@ import {
   updatePaymentIntentFutureUsageEndpoint,
   paymentMethodDetachEndpoint,
   createCustomerAndAddToPaymentIntentEndpoint,
+  updatePaymentIntentItemsEndpoint,
 } from "./consts";
 
 // Requests
@@ -122,13 +127,30 @@ const detachPaymentMethodRequest = async (paymentMethodId: string) => {
 };
 
 const createCustomerAndAddToPaymentIntent = async (
-  email: string,
+  customerEmail: string,
+  customerAddress: StripeAddressElementChangeEvent["value"],
   paymentIntentId: string
 ) => {
   try {
-    const data = { email, paymentIntentId };
+    const data = { customerEmail, customerAddress, paymentIntentId };
     const res = await axios.post(
       `${serverApi}${createCustomerAndAddToPaymentIntentEndpoint}`,
+      data
+    );
+    return res.data;
+  } catch {
+    return { error: requestError };
+  }
+};
+
+const updatePaymentIntentItemsRequest = async (
+  paymentIntentId: string,
+  fruitBasket: FruitBasketItem[]
+) => {
+  try {
+    const data = { paymentIntentId, fruitBasket };
+    const res = await axios.post(
+      `${serverApi}${updatePaymentIntentItemsEndpoint}`,
       data
     );
     return res.data;
@@ -147,4 +169,5 @@ export {
   updatePaymentIntentFutureUsageRequest,
   detachPaymentMethodRequest,
   createCustomerAndAddToPaymentIntent,
+  updatePaymentIntentItemsRequest,
 };

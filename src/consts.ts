@@ -6,25 +6,25 @@ const emptyFruitBasket: FruitBasketItem[] = [
   {
     label: "🍓 Strawberries",
     ref: "strawberries",
-    cost: 2900,
+    cost: 290,
     quantity: 0,
   },
   {
     label: "🍊 Oranges",
     ref: "oranges",
-    cost: 1200,
+    cost: 120,
     quantity: 0,
   },
   {
     label: "🍇 Grapes",
     ref: "grapes",
-    cost: 1400,
+    cost: 140,
     quantity: 0,
   },
   {
     label: "🍎 Apples",
     ref: "apples",
-    cost: 1000,
+    cost: 100,
     quantity: 0,
   },
 ];
@@ -54,6 +54,7 @@ const paymentElementAppearence: Appearance = {
 // Endpoint routes
 const requestError: string = "Request failed";
 const serverApi: string = "https://fresh-fruit-co-server.vercel.app";
+// const serverApi: string = "http://localhost:8081";
 const createPaymentIntentEndpoint: string = "/paymentIntent";
 const getPaymentMethodCustomerEndpoint: string = "/paymentMethodCustomer";
 const updatePaymentIntentCustomerEndpont: string =
@@ -63,6 +64,11 @@ const updatePaymentIntentFutureUsageEndpoint: string =
 const paymentMethodDetachEndpoint: string = "/paymentMethodDetach";
 const createCustomerAndAddToPaymentIntentEndpoint: string =
   "/paymentIntentAddCustomer";
+const updatePaymentIntentItemsEndpoint: string = "/paymentIntentUpdateItems";
+
+// Payment messages
+const genericPaymentError: string =
+  "There was an unknown problem with procesing your payment, please try again.";
 
 // Const exports
 export {
@@ -76,4 +82,6 @@ export {
   updatePaymentIntentFutureUsageEndpoint,
   paymentMethodDetachEndpoint,
   createCustomerAndAddToPaymentIntentEndpoint,
+  genericPaymentError,
+  updatePaymentIntentItemsEndpoint,
 };

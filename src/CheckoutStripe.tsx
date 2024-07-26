@@ -18,6 +18,7 @@ import {
   Text,
   Heading,
   Checkbox,
+  Alert,
 } from "@twilio-paste/core";
 import { DeleteIcon } from "@twilio-paste/icons/esm/DeleteIcon";
 
@@ -33,6 +34,8 @@ interface CheckoutStripeProps {
   setSavePaymentMethod: Function;
   detachPaymentMethod: Function;
   customerEmail: string;
+  stripeError: string;
+  stripeShouldRetry: boolean;
 }
 
 // Components
@@ -47,6 +50,8 @@ const CheckoutStripe = ({
   setSavePaymentMethod,
   detachPaymentMethod,
   customerEmail,
+  stripeError,
+  stripeShouldRetry,
 }: CheckoutStripeProps) => {
   // Consts
   const elements = useElements();
@@ -55,6 +60,16 @@ const CheckoutStripe = ({
   // State
   const [paymentInputsComplete, setPaymentInputsComplete] =
     useState<boolean>(false);
+
+  // Effects
+  useEffect(() => {
+    if (elements && stripeError && !stripeShouldRetry) {
+      const paymentElement = elements?.getElement("payment");
+      if (paymentElement) {
+        paymentElement.clear();
+      }
+    }
+  }, [elements, stripeError, stripeShouldRetry]);
 
   return (
     <Box>
@@ -125,6 +140,7 @@ const CheckoutStripe = ({
       ) : (
         <></>
       )}
+      {stripeError ? <Alert variant="warning">{stripeError}</Alert> : <></>}
       <PaymentElement
         onChange={(event) => {
           if (event.complete) {
@@ -166,7 +182,7 @@ const CheckoutStripe = ({
         Pay £
         {(
           fruitBasket.reduce((sum, cur) => sum + cur.cost * cur.quantity, 0) /
-          1000
+          100
         ).toFixed(2)}
       </Button>
     </Box>

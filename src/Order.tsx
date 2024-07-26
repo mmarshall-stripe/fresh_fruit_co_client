@@ -16,14 +16,31 @@ import {
   Text,
 } from "@twilio-paste/core";
 
+// Function imports
+import { updatePaymentIntentItemsRequest } from "./requests";
+
 // Types
 interface OrderProps {
   setPage: Function;
   updateFruitBasket: Function;
   fruitBasket: FruitBasketItem[];
+  paymentIntentId: string | undefined;
 }
 
-const Order = ({ setPage, updateFruitBasket, fruitBasket }: OrderProps) => {
+const Order = ({
+  setPage,
+  updateFruitBasket,
+  fruitBasket,
+  paymentIntentId,
+}: OrderProps) => {
+  // Functions
+  const moveToCheckout = async () => {
+    if (paymentIntentId) {
+      await updatePaymentIntentItemsRequest(paymentIntentId, fruitBasket);
+    }
+    setPage("checkout");
+  };
+
   // Render
   return (
     <Box className="order-wrapper">
@@ -37,7 +54,7 @@ const Order = ({ setPage, updateFruitBasket, fruitBasket }: OrderProps) => {
               <ListItem key={ref}>
                 <Box>
                   <Label>{label}</Label>
-                  <HelpText id="price">£{(cost / 1000).toFixed(2)}</HelpText>
+                  <HelpText id="price">£{(cost / 100).toFixed(2)}</HelpText>
                 </Box>
                 <Input
                   aria-describedby={`${ref}_amount_help`}
@@ -66,7 +83,7 @@ const Order = ({ setPage, updateFruitBasket, fruitBasket }: OrderProps) => {
               fruitBasket.reduce(
                 (sum, cur) => sum + cur.cost * cur.quantity,
                 0
-              ) / 1000
+              ) / 100
             ).toFixed(2)}
           </Text>
         </Box>
@@ -74,7 +91,7 @@ const Order = ({ setPage, updateFruitBasket, fruitBasket }: OrderProps) => {
         <Button
           variant="primary"
           fullWidth
-          onClick={() => setPage("checkout")}
+          onClick={moveToCheckout}
           disabled={
             fruitBasket.reduce((sum, cur) => sum + cur.quantity, 0) === 0
           }
