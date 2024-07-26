@@ -249,7 +249,7 @@ const Checkout = ({
                   verticalSpacing="space100"
                 />
                 <Button variant="primary_icon" onClick={() => setPage("order")}>
-                  Back
+                  Continue shopping
                   <SkipBackIcon
                     decorative={false}
                     title="Description of icon"
