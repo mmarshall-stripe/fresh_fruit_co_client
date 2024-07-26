@@ -24,7 +24,6 @@ import {
   SkeletonLoader,
   RadioButton,
   RadioButtonGroup,
-  Alert,
 } from "@twilio-paste/core";
 import { SkipBackIcon } from "@twilio-paste/icons/esm/SkipBackIcon";
 
@@ -279,10 +278,6 @@ const Checkout = ({
                         <Heading as="h2" variant="heading40">
                           Welcome back!
                         </Heading>
-                        <Alert variant="neutral">
-                          Collect loyalty points with every purchase as a Fresh
-                          Fruit member
-                        </Alert>
                         <Input
                           aria-describedby="email_help_text"
                           name="email"
