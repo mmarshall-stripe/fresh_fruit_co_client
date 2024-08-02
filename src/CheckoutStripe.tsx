@@ -4,6 +4,7 @@ import {
   PaymentElement,
   useElements,
   useStripe,
+  ExpressCheckoutElement,
 } from "@stripe/react-stripe-js";
 
 import { PaymentMethod } from "@stripe/stripe-js";
@@ -141,8 +142,12 @@ const CheckoutStripe = ({
         <></>
       )}
       {stripeError ? <Alert variant="warning">{stripeError}</Alert> : <></>}
+      <ExpressCheckoutElement
+        onConfirm={() => confirmPaymentIntent(stripe, elements)}
+      />
       <PaymentElement
         onChange={(event) => {
+          console.log(event.value);
           if (event.complete) {
             setPaymentInputsComplete(true);
           } else if (paymentInputsComplete) {
