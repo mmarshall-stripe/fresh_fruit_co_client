@@ -65,7 +65,7 @@ const Checkout = ({
 }: CheckoutProps) => {
   // Consts
   const stripePromise = loadStripe(
-    "pk_test_51PbM05EcWtsOmG7W3xBJtx8L3h4hnmdeB91LISGSB6zaNMbAqfDPFgBBlmnDapRExRRE30lY4Wep9gLlobBhLv4d00GrOpcUN3"
+    "pk_live_51PbM05EcWtsOmG7WK9KOQRHGMuK7c7ZST6AgGzyCx7ByX7C5RSARv8CCFyXwHF5OpRgnbC9CkY0FwdzzBaXJ2gYi00KmEFO8Wq"
   );
 
   // State
@@ -97,13 +97,17 @@ const Checkout = ({
   // Functions
   const createPaymentIntentGuest = async () => {
     // User is always unknown at the point we create payment intent in this flow
-    const paymentIntentGuest = await createPaymentIntentRequest(fruitBasket);
-    if (paymentIntentGuest.error) {
-    } else {
-      const { clientSecret, paymentIntentId } = paymentIntentGuest;
-      setClientSecret(clientSecret);
-      setPaymentIntentId(paymentIntentId);
-    }
+    // const paymentIntentGuest = await createPaymentIntentRequest(fruitBasket);
+    // if (paymentIntentGuest.error) {
+    // } else {
+    //   const { clientSecret, paymentIntentId } = paymentIntentGuest;
+    //   setClientSecret(clientSecret);
+    //   setPaymentIntentId(paymentIntentId);
+    // }
+    setClientSecret(
+      "pi_3QttZWEcWtsOmG7W1A2YQD6A_secret_tgYTcMH7acYVteMB7rZTIAzyc"
+    );
+    setPaymentIntentId("pi_3QttZWEcWtsOmG7W1A2YQD6A");
   };
 
   const confirmPaymentIntent = async (

@@ -37,15 +37,26 @@ const confirmPaymentIntentRequest = async (
   stripe: Stripe,
   elements: StripeElements
 ) => {
+  console.log("hi");
   try {
     const res = await stripe.confirmPayment({
       elements,
       confirmParams: {
         return_url: "https://example.com",
+        payment_method_data: {
+          billing_details: {
+            address: {
+              postal_code: "PE93QE",
+              country: "gb",
+            },
+          },
+        },
       },
     });
+    console.log(res);
     return res;
   } catch {
+    console.log(requestError);
     return { error: requestError };
   }
 };

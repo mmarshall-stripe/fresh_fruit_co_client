@@ -53,8 +53,8 @@ const paymentElementAppearence: Appearance = {
 
 // Endpoint routes
 const requestError: string = "Request failed";
-const serverApi: string = "https://fresh-fruit-co-server.vercel.app";
-// const serverApi: string = "http://localhost:8081";
+// const serverApi: string = "https://fresh-fruit-co-server.vercel.app";
+const serverApi: string = "http://localhost:7001";
 const createPaymentIntentEndpoint: string = "/paymentIntent";
 const getPaymentMethodCustomerEndpoint: string = "/paymentMethodCustomer";
 const updatePaymentIntentCustomerEndpont: string =
