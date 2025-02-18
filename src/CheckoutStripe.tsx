@@ -182,7 +182,7 @@ const CheckoutStripe = ({
         variant="primary"
         onClick={() => confirmPaymentIntent(stripe, elements)}
         fullWidth
-        disabled={!paymentInputsComplete}
+        // disabled={!paymentInputsComplete}
       >
         Pay £
         {(
