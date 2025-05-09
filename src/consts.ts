@@ -29,32 +29,57 @@ const emptyFruitBasket: FruitBasketItem[] = [
   },
 ];
 
+// const paymentElementAppearence: Appearance = {
+//   theme: "night",
+//   variables: {
+//     colorBackground: "#0d131cff",
+//     colorText: "#fff",
+//     fontFamily: "Helvetica Neue",
+//     spacingUnit: "3px",
+//     borderRadius: "4px",
+//   },
+//   rules: {
+//     ".Tab": {
+//       marginBottom: "20px",
+//     },
+//     ".Label": {
+//       marginBottom: "10px",
+//     },
+//     ".Input": {
+//       boxShadow: "rgb(57, 71, 98) 0px 0px 0px 1px",
+//     },
+//   },
+// };
+
 const paymentElementAppearence: Appearance = {
-  theme: "night",
-  variables: {
-    colorBackground: "#0d131cff",
-    colorText: "#fff",
-    fontFamily: "Helvetica Neue",
-    spacingUnit: "3px",
-    borderRadius: "4px",
-  },
-  rules: {
-    ".Tab": {
-      marginBottom: "20px",
-    },
-    ".Label": {
-      marginBottom: "10px",
-    },
-    ".Input": {
-      boxShadow: "rgb(57, 71, 98) 0px 0px 0px 1px",
-    },
-  },
+  theme: "stripe",
+  // variables: {
+  //   colorBackground: "#fff",
+  //   colorText: "#fff",
+  //   fontFamily: "Helvetica Neue",
+  //   spacingUnit: "3px",
+  //   borderRadius: "4px",
+  //   colorTextPlaceholder: "black",
+  // },
+  // rules: {
+  //   ".Tab": {
+  //     marginBottom: "20px",
+  //   },
+  //   ".Label": {
+  //     marginBottom: "10px",
+  //     colorText: "black",
+  //   },
+  //   ".Input": {
+  //     colorBackground: "#fff",
+  //     border: "1px solid grey",
+  //   },
+  // },
 };
 
 // Endpoint routes
 const requestError: string = "Request failed";
-const serverApi: string = "https://fresh-fruit-co-server.vercel.app";
-// const serverApi: string = "http://localhost:7001";
+// const serverApi: string = "https://fresh-fruit-co-server.vercel.app";
+const serverApi: string = "http://localhost:7001";
 const createPaymentIntentEndpoint: string = "/paymentIntent";
 const getPaymentMethodCustomerEndpoint: string = "/paymentMethodCustomer";
 const updatePaymentIntentCustomerEndpont: string =

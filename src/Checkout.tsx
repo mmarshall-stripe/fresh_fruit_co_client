@@ -65,8 +65,8 @@ const Checkout = ({
 }: CheckoutProps) => {
   // Consts
   const stripePromise = loadStripe(
-    "pk_live_51PbM05EcWtsOmG7WK9KOQRHGMuK7c7ZST6AgGzyCx7ByX7C5RSARv8CCFyXwHF5OpRgnbC9CkY0FwdzzBaXJ2gYi00KmEFO8Wq"
-    //"pk_test_51PbM05EcWtsOmG7W3xBJtx8L3h4hnmdeB91LISGSB6zaNMbAqfDPFgBBlmnDapRExRRE30lY4Wep9gLlobBhLv4d00GrOpcUN3"
+    // "pk_live_51PbM05EcWtsOmG7WK9KOQRHGMuK7c7ZST6AgGzyCx7ByX7C5RSARv8CCFyXwHF5OpRgnbC9CkY0FwdzzBaXJ2gYi00KmEFO8Wq"
+    "pk_test_51PbM05EcWtsOmG7W3xBJtx8L3h4hnmdeB91LISGSB6zaNMbAqfDPFgBBlmnDapRExRRE30lY4Wep9gLlobBhLv4d00GrOpcUN3"
   );
 
   // State
@@ -105,14 +105,6 @@ const Checkout = ({
       setClientSecret(clientSecret);
       setPaymentIntentId(paymentIntentId);
     }
-    // setClientSecret(
-    //   // "pi_3QttZWEcWtsOmG7W1A2YQD6A_secret_tgYTcMH7acYVteMB7rZTIAzyc"
-    //   "pi_3QttnlEcWtsOmG7W0FFxiZdz_secret_QeYnUoI3iEBCp34dWMXlxrICw"
-    // );
-    // setPaymentIntentId(
-    //   // "pi_3QttZWEcWtsOmG7W1A2YQD6A"
-    //   "pi_3QttnlEcWtsOmG7W0FFxiZdz"
-    // );
   };
 
   const confirmPaymentIntent = async (
@@ -149,11 +141,13 @@ const Checkout = ({
     );
     const { error } = confirmPaymentIntentResponse;
     if (error) {
+      console.log(error);
       if (typeof error === "string") {
         setStripeError(genericPaymentError);
       } else {
         // Have to set this as any because there is a missing shouldRetry prop on the StripeError Type
         const { message, shouldRetry } = error as any;
+        console.log(message);
         setStripeShouldRetry(shouldRetry);
         setStripeError(message);
       }

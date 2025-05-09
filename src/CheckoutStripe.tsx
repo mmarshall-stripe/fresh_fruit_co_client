@@ -63,14 +63,17 @@ const CheckoutStripe = ({
     useState<boolean>(false);
 
   // Effects
-  useEffect(() => {
-    if (elements && stripeError && !stripeShouldRetry) {
-      const paymentElement = elements?.getElement("payment");
-      if (paymentElement) {
-        paymentElement.clear();
-      }
-    }
-  }, [elements, stripeError, stripeShouldRetry]);
+  // useEffect(() => {
+  // if (elements && stripeError && !stripeShouldRetry) {
+  //   const paymentElement = elements?.getElement("payment");
+  //   if (paymentElement) {
+  //     paymentElement.clear();
+  //   }
+  // }]
+  //   if (stripeError) {
+
+  //   }
+  // }, [elements, stripeError, stripeShouldRetry]);
 
   return (
     <Box>
@@ -142,9 +145,6 @@ const CheckoutStripe = ({
         <></>
       )}
       {stripeError ? <Alert variant="warning">{stripeError}</Alert> : <></>}
-      <ExpressCheckoutElement
-        onConfirm={() => confirmPaymentIntent(stripe, elements)}
-      />
       <PaymentElement
         onChange={(event) => {
           console.log(event.value);
@@ -158,6 +158,21 @@ const CheckoutStripe = ({
           layout: {
             type: "accordion",
             defaultCollapsed: false,
+          },
+        }}
+      />
+      <ExpressCheckoutElement
+        onConfirm={() => confirmPaymentIntent(stripe, elements)}
+        options={{
+          buttonTheme: {
+            paypal: "gold",
+          },
+          paymentMethods: {
+            paypal: "auto",
+          },
+          layout: {
+            maxRows: 1,
+            overflow: "auto",
           },
         }}
       />

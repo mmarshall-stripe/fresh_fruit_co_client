@@ -25,7 +25,7 @@ const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
-  <Theme.Provider theme="dark">
+  <Theme.Provider theme="light">
     {/* <App /> */}
     <RouterProvider router={router} />
   </Theme.Provider>
